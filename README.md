@@ -18,12 +18,13 @@ define command{
        }
 ```
 
-e.g. let's add the command check_hdfs_fsck which will at the end execute /usr/lib64/nagios/plugins/check_hadoop_hdfs_state (without further parameters)
+e.g. let's add the command check_hdfs_fsck which will at the end execute /usr/lib64/nagios/plugins/check_hadoop_hdfs_state (without further parameters).
+Just use the check_hdfs_health script from this repo as a starting point
 
 ```
 define command{
         command_name    check_hdfs_fsck
-        command_line    $USER1$/check_hadoop_hdfs_state
+        command_line    $USER1$/check_hdfs_health
        }
 
 ```
