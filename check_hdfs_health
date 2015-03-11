@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# HDFS check plugin for Nagios
+# written by Gerd Koenig <gerd.koenig@scigility.com>
+#
+# Description:
+#
+# This plugin will return information about the
+# health of the Hadoop filesystem HDFS
+
+message=$(/usr/bin/hadoop fsck / 2>/dev/null | grep 'filesystem under path')
+if [ $(echo $message | grep -c 'is HEALTHY') -lt 1 ]; then
+  message="ERROR: $message"
+  exit_code=2
+else
+  message="OK. $message"
+  exit_code=0
+fi
+
+echo $message
+exit $exit_code
